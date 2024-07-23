@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+        <!-- Extender la vista calendar.view_calendar_event_form -->
+        <record id="view_calendar_event_form_inherit" model="ir.ui.view">
+            <field name="name">calendar.event.form.inherit</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_ids']" position="after">
+                    <!-- Campo para mostrar los teléfonos de los socios -->
+                    <field name="partner_phones" readonly="1" placeholder="No phone numbers available"/>
+                    
+                    <!-- Campo para mostrar la fecha y hora menos 3 horas -->
+                    <field name="start_minus_3_hours" readonly="1" placeholder="No start time" invisible="1"/>
+                    
+                    <!-- Campo para mostrar la fecha y hora menos 1 día -->
+                    <field name="start_minus_1_day" readonly="1" placeholder="No start time" invisible="1"/>
+                    
+                    <!-- Botón para enviar mensaje de WhatsApp -->
+                    <button name="action_send_whatsapp_message" 
+                            type="object" 
+                            string="Whatsapp">
+                            <span class="fa fa-whatsapp"/> Whatsapp
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
